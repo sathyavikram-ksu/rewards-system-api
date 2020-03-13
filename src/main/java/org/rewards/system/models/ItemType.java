@@ -1,14 +1,11 @@
 package org.rewards.system.models;
 
-public enum PurchaseType {
-    PAID(0),
-    PRE_ORDER(1),
-    MONTHLY_FREE_FOR_50(2),
-    MONTHLY_FREE_FOR_GOLD(3);
+public enum ItemType {
+    ICE_CREAM(0), YOGURT(1);
 
     private int value;
 
-    PurchaseType(int value) {
+    ItemType(int value) {
         this.value = value;
     }
 

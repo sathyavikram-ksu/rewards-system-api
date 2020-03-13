@@ -1,5 +1,7 @@
 package org.rewards.system.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -12,14 +14,19 @@ public class Purchase extends Audit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
+    private ItemType itemType;
+    @NotNull
     private PurchaseType purchaseType;
     @NotNull
     private Double amount;
     @NotNull
     private Long points;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Long pickUpDate;
+    private Integer pickUpSlot;
+    @ManyToOne()
     @JoinColumn(name = "customer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @NotNull
     private Customer customer;
 
     public Long getId() {
@@ -60,5 +67,29 @@ public class Purchase extends Audit {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+    public Long getPickUpDate() {
+        return pickUpDate;
+    }
+
+    public void setPickUpDate(Long pickUpDate) {
+        this.pickUpDate = pickUpDate;
+    }
+
+    public Integer getPickUpSlot() {
+        return pickUpSlot;
+    }
+
+    public void setPickUpSlot(Integer pickUpSlot) {
+        this.pickUpSlot = pickUpSlot;
     }
 }
